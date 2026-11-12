@@ -20,7 +20,7 @@
 
 ## تصاویر
 
-<p><img src="screenshots/popup-light.png" width="300" alt="پاپ‌آپ ردیاب قیمت دیجی‌کالا — حالت روشن"> <img src="screenshots/popup-dark.png" width="300" alt="پاپ‌آپ ردیاب قیمت دیجی‌کالا — حالت تیره"></p>p>
+<p><img src="screenshots/popup-light.png" width="300" alt="پاپ‌آپ ردیاب قیمت دیجی‌کالا — حالت روشن"> <img src="screenshots/popup-dark.png" width="300" alt="پاپ‌آپ ردیاب قیمت دیجی‌کالا — حالت تیره"></p>
 
 ## نصب
 
