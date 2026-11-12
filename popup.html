@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('fonts/vazirmatn-arabic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+200C-200D, U+FB50-FDFF, U+FE70-FEFC, U+0660-0669, U+06F0-06F9;
+}
+@font-face {
+  font-family: 'Vazirmatn';
+  src: url('fonts/vazirmatn-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF;
+}
+:root {
+  --bg: #f3f5f9; --card: #ffffff; --text: #0f172a; --muted: #64748b;
+  --line: #e2e8f0; --accent: #ef4056; --accent2: #f97316;
+  --green: #16a34a; --green-bg: #dcfce7; --red: #dc2626; --red-bg: #fee2e2;
+  --chip: #f1f5f9;
+}
+html[data-theme="dark"] {
+  --bg: #0f172a; --card: #1e293b; --text: #f1f5f9; --muted: #94a3b8;
+  --line: #334155; --green-bg: #14532d; --red-bg: #7f1d1d; --chip: #334155;
+}
+* { box-sizing: border-box; }
+body {
+  width: 360px; margin: 0; padding: 12px;
+  font-family: 'Vazirmatn', Tahoma, sans-serif;
+  background: var(--bg); color: var(--text); font-size: 13px;
+}
+header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.logo {
+  width: 36px; height: 36px; border-radius: 10px; flex: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+}
+.logo svg { width: 20px; height: 20px; }
+h1 { font-size: 15px; font-weight: 800; margin: 0; flex: 1; }
+.icon-btn {
+  width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--card); color: var(--text); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; padding: 0;
+}
+.icon-btn svg { width: 16px; height: 16px; }
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 12px; margin-bottom: 10px;
+}
+.product-title { font-weight: 700; font-size: 13px; line-height: 1.7; margin: 0 0 8px; }
+.price-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.price { font-size: 20px; font-weight: 800; }
+.price small { font-size: 11px; font-weight: 400; color: var(--muted); }
+.old-price { color: var(--muted); text-decoration: line-through; font-size: 12px; }
+.badge {
+  font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+  background: var(--red-bg); color: var(--red);
+}
+.badge.up { background: var(--red-bg); color: var(--red); }
+.badge.down { background: var(--green-bg); color: var(--green); }
+.badge.flat { background: var(--chip); color: var(--muted); }
+.change-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+.change-note { color: var(--muted); font-size: 12px; }
+.stats-row { display: flex; gap: 8px; margin-top: 10px; }
+.stat { flex: 1; background: var(--chip); border-radius: 10px; padding: 8px; text-align: center; }
+.stat .label { display: block; font-size: 11px; color: var(--muted); }
+.stat .value { display: block; font-weight: 700; margin-top: 2px; }
+canvas { width: 100%; height: 110px; display: block; margin-top: 10px; }
+.meta { color: var(--muted); font-size: 11px; margin-top: 8px; }
+.actions { display: flex; gap: 8px; margin-top: 10px; }
+button.action {
+  flex: 1; border: 1px solid var(--line); border-radius: 10px; padding: 8px;
+  background: var(--card); color: var(--text); font: inherit; cursor: pointer; font-weight: 700;
+}
+button.action.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+button.action.danger { color: var(--red); }
+h2 { font-size: 13px; font-weight: 800; margin: 4px 2px 8px; }
+.list-item {
+  display: block; width: 100%; text-align: right; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 10px 12px; margin-bottom: 8px; font: inherit; color: var(--text);
+}
+.list-item .li-title {
+  display: block; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.list-item .li-row { display: flex; justify-content: space-between; align-items: center; margin-top: 4px; }
+.list-item .li-price { font-weight: 800; }
+.list-item .li-time { color: var(--muted); font-size: 11px; }
+.empty { color: var(--muted); text-align: center; padding: 16px 8px; line-height: 1.9; }
+.hint {
+  background: var(--chip); border-radius: 10px; padding: 10px 12px;
+  color: var(--muted); font-size: 12px; line-height: 1.9; margin-bottom: 10px;
+}
+footer { color: var(--muted); font-size: 11px; text-align: center; margin-top: 4px; line-height: 1.8; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 11 3H4v7l9.59 9.59a2 2 0 0 0 2.82 0l4.18-4.18a2 2 0 0 0 0-2.82z"/><circle cx="7.5" cy="7.5" r="1" fill="#fff"/></svg>
+  </div>
+  <h1>ردیاب قیمت دیجی‌کالا</h1>
+  <button class="icon-btn" id="theme-toggle" type="button" title="حالت تیره"></button>
+</header>
+<main>
+  <section class="card" id="current" hidden>
+    <p class="product-title" id="cur-title"></p>
+    <div class="price-row">
+      <span class="price"><span id="cur-price"></span> <small>تومان</small></span>
+      <span class="old-price" id="cur-old" hidden></span>
+      <span class="badge" id="cur-discount" hidden></span>
+    </div>
+    <div class="change-row">
+      <span class="badge flat" id="cur-change"></span>
+      <span class="change-note" id="cur-change-note"></span>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><span class="label">کمترین</span><span class="value" id="stat-min"></span></div>
+      <div class="stat"><span class="label">بیشترین</span><span class="value" id="stat-max"></span></div>
+      <div class="stat"><span class="label">ثبت‌ها</span><span class="value" id="stat-count"></span></div>
+    </div>
+    <canvas id="chart" width="640" height="220"></canvas>
+    <p class="meta" id="cur-meta"></p>
+    <div class="actions">
+      <button class="action primary" id="btn-refresh" type="button">ثبت قیمت الان</button>
+      <button class="action danger" id="btn-remove" type="button">حذف از لیست</button>
+    </div>
+  </section>
+
+  <div class="hint" id="not-product" hidden>
+    این صفحه، صفحه‌ی محصول دیجی‌کالا نیست. وقتی صفحه‌ی یک محصول را باز می‌کنی، قیمتش به‌صورت خودکار ثبت می‌شود و نمودارش همین‌جا نمایش داده می‌شود.
+  </div>
+  <div class="hint" id="no-price" hidden>
+    قیمت این محصول هنوز خوانده نشده. چند ثانیه صبر کن تا صفحه کامل لود شود، بعد «ثبت قیمت الان» را بزن.
+  </div>
+
+  <h2>محصولات تحت نظر</h2>
+  <div id="list"></div>
+  <p class="empty" id="empty" hidden>هنوز محصولی ثبت نشده. یک صفحه‌ی محصول در دیجی‌کالا باز کن تا قیمتش ثبت شود.</p>
+</main>
+<footer>داده‌ها فقط روی همین مرورگر ذخیره می‌شوند؛ هیچ چیزی به هیچ سروری فرستاده نمی‌شود.<br>نسخه ۱٫۰٫۰</footer>
+<script src="popup.js"></script>
+</body>
+</html>
